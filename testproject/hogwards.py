@@ -8,24 +8,31 @@ URL = "https://witty-hill-0acfceb03.azurestaticapps.net/hogwards.html"
 browser.get(URL)
 browser.maximize_window()
 
-# bevitt adatok értékei
-user_name = "Kiss Róbert Ferenc"
-travel_date_year = '2019'
-travel_date_month = '03'
-travel_date_day = '25'
-travel_time_hour = '07'
-travel_time_minute = '26'
 
-# input fields
+def input_kitoltes(input, adat):
+    input.clear()
+    input.send_keys(adat)
+
+
+# bevitt adatok értékei
+user_name = "KISS RÓBERT FERENC"
+travel_date = '0020192504'
+travel_time = '0715'
+
+# input mezők
 passenger = browser.find_element_by_id('passenger')
 departure_date = browser.find_element_by_id('departure-date')
 departure_time = browser.find_element_by_id('departure-time')
 issue_ticket = browser.find_element_by_id('issue-ticket')
 
 # bevitt adatok kitöltése
-passenger.clear()
-passenger.send_keys(user_name)
-
-
+input_kitoltes(passenger, user_name)
+input_kitoltes(departure_date, travel_date)
+input_kitoltes(departure_time, travel_time)
 time.sleep(2)
-browser.quit()
+
+issue_ticket.click()
+
+
+# time.sleep(2)
+# browser.quit()
