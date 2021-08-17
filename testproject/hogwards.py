@@ -16,7 +16,7 @@ def input_kitoltes(input, adat):
 
 # bevitt adatok értékei
 user_name = "KISS RÓBERT FERENC"
-travel_date = '2019-02-04'
+travel_date = '002019-02-04'
 travel_time = '07:15AM'
 
 # bevitt mezők
