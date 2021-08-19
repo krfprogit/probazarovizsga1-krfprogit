@@ -1,10 +1,5 @@
 from selenium import webdriver
 import time
-import csv
-import datetime  # Py10
-
-from selenium.webdriver.common.keys import Keys
-import selenium.common.exceptions
 
 PATH = "C:\\Windows\\chromedriver.exe"
 browser = webdriver.Chrome(PATH)
@@ -25,6 +20,7 @@ numbers_quantity = len(numbers_drawn)
 assert numbers_quantity == 0
 
 # TC02
+# 6x click
 for i in range(6):
     generate_btn.click()
     time.sleep(1)
@@ -41,6 +37,7 @@ assert numbers_quantity == 6
 # print()
 # print('---------------------')
 
+# számok 1 és 59 között vannak?
 for n in numbers_drawn:
     numbers_value = n.text
     print(numbers_value, ' ', end='')
@@ -48,13 +45,19 @@ for n in numbers_drawn:
     assert numbers_value >= 1 and numbers_value <= 59
 
 # TC03
+# hetedik click, csak 6 szám
 generate_btn.click()
 time.sleep(1)
 numbers_drawn = browser.find_elements_by_xpath('//*[@id="container"]/div')
 numbers_quantity = len(numbers_drawn)
 assert numbers_quantity != 7
 
+# reset, nincs szám
+reset_btn.click()
+time.sleep(1)
+numbers_drawn = browser.find_elements_by_xpath('//*[@id="container"]/div')
+numbers_quantity = len(numbers_drawn)
+assert numbers_quantity == 0
 
-
-# time.sleep(2)
-# browser.quit()
+time.sleep(2)
+browser.quit()
