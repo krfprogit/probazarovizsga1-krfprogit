@@ -1,10 +1,5 @@
 from selenium import webdriver
 import time
-import csv
-import datetime  # Py10
-
-from selenium.webdriver.common.keys import Keys
-import selenium.common.exceptions
 
 PATH = "C:\\Windows\\chromedriver.exe"
 browser = webdriver.Chrome(PATH)
@@ -27,6 +22,20 @@ assert tax_output.text == ''
 # megjelenik-e a következő felirat: "Enter the property value before clicking Go button."?
 disclaimer_output = browser.find_element_by_id('disclaimer')
 assert disclaimer_output.is_displayed()
+time.sleep(1)
 
-# time.sleep(2)
-# browser.quit()
+# TC02
+browser.refresh()
+# input értékek
+price_input = browser.find_element_by_id('price')
+tax_output = browser.find_element_by_id('tax')
+go_btn = browser.find_element_by_xpath('/html/body/main/div/div/p[1]/button')
+
+# ellenőrzés
+price_input.send_keys('33333')
+go_btn.click()
+time.sleep(1)
+assert tax_output.get_attribute('value') == '166.665'
+
+time.sleep(1)
+browser.quit()
